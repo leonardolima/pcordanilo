@@ -5,7 +5,7 @@ import config
 
 def get_tweets(name, api):
     lst = []
-    statuses = api.user_timeline(id = name, count = 100, include_rts = False)
+    statuses = api.user_timeline(id = name, count = 500, include_rts = False)
     
     for status in statuses:
         status_encoded = status.text.encode('utf-8')
