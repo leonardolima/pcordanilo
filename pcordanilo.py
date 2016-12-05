@@ -9,6 +9,9 @@ def get_tweets(name, api):
     
     for status in statuses:
         status_encoded = status.text.encode('utf-8')
+        status_encoded = status_encoded.lower()
+        if status_encoded.endswith('.'):
+            status_encoded = status_encoded[:-1]
         if 't.co' not in status_encoded and '@' not in status_encoded:
             lst.append(status_encoded)
 
