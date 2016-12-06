@@ -12,7 +12,7 @@ def get_tweets(name, api):
         status_encoded = status_encoded.lower()
         if status_encoded.endswith('.'):
             status_encoded = status_encoded[:-1]
-        if 't.co' not in status_encoded and '@' not in status_encoded:
+        if 't.co' not in status_encoded and '@' not in status_encoded and '\n' not in status_encoded:
             lst.append(status_encoded)
 
     return lst
@@ -69,7 +69,7 @@ def main():
         tweet = get_random_tweet(fst_lst, snd_lst)
         api.update_status(tweet)
         save_tweet(tweet)
-        sleep(21600)
+        sleep(10800)
 
 if __name__ == "__main__":
     main()
