@@ -18,9 +18,8 @@ def get_tweets(name, api):
     return lst
 
 def save_tweet(tweet):
-    txt_file = open("mytweets.txt", "w")
-    txt_file.write("%s" % tweet)
-    txt_file.close()
+    with open('mytweets.txt', "a") as f:
+        f.write("%s" % tweet)
 
 def read_tweets():
     lst = []
