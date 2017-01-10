@@ -12,29 +12,17 @@ def get_tweets(name, api):
         status_encoded = status_encoded.lower()
         if status_encoded.endswith('.'):
             status_encoded = status_encoded[:-1]
-        if 't.co' not in status_encoded and '@' not in status_encoded and '\n' not in status_encoded:
+        if 't.co' not in status_encoded and '@' not in status_encoded:
             lst.append(status_encoded)
 
     return lst
 
+old_tweets = get_tweets('pcoudanilo', api)
+
 def save_tweet(tweet):
-    with open('mytweets.txt', "a") as f:
-        f.write("%s" % tweet)
-
-def read_tweets():
-    lst = []
-
-    with open('mytweets.txt') as f:
-        for line in f:
-            lst.append(line)
-            if 'str' in line:
-                break
-
-    return lst
+    old_tweets.append(tweet)
 
 def get_random_tweet(fst_lst, snd_lst):
-    old_tweets = read_tweets()
-
     while True:
         fst_tweet = fst_lst[randint(0,len(fst_lst))]
         snd_tweet = snd_lst[randint(0,len(snd_lst))]
@@ -69,7 +57,7 @@ def main():
         tweet = get_random_tweet(fst_lst, snd_lst)
         api.update_status(tweet)
         save_tweet(tweet)
-        sleep(10800)
+        sleep(21600)
 
 if __name__ == "__main__":
     main()
