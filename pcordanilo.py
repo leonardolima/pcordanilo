@@ -3,6 +3,8 @@ from time import sleep
 import tweepy
 import config
 
+old_tweets = []
+
 def get_tweets(name, api):
     lst = []
     statuses = api.user_timeline(id = name, count = 500, include_rts = False)
@@ -17,7 +19,8 @@ def get_tweets(name, api):
 
     return lst
 
-old_tweets = get_tweets('pcoudanilo', api)
+def get_old_tweets(api):
+    old_tweets = get_tweets('pcoudanilo', api)
 
 def save_tweet(tweet):
     old_tweets.append(tweet)
@@ -46,6 +49,8 @@ def main():
     auth.set_access_token(config.ACCESS_TOKEN_KEY, config.ACCESS_TOKEN_SECRET)
     
     api = tweepy.API(auth)
+
+    get_old_tweets(api)
 
     while True:
         fst_lst = [] # pecesiqueira tweets
